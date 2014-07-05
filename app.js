@@ -10,8 +10,7 @@ var recoginize = {
     arrays : _.isArray,
     booleans : _.isBoolean,
     numbers : _.isNumber,
-    strings: _.isString,
-    undefineds : _.isUndefined
+    strings: _.isString
 };
 
 function getFuncByBehaviour(behaviour){
@@ -27,9 +26,7 @@ function getFuncByBehaviour(behaviour){
                 return x.concat(y);
             };
         case MERGE:
-            return function(x,y) {
-                return undefined;
-            };
+            return undefined;
         case OR:
             return function(x,y) {
                 return x || y;
@@ -44,30 +41,35 @@ function getFuncByBehaviour(behaviour){
 function customizeExtend(options) {
     options = options || {};
 
-    var inPlace = options.inPlace || false;
+    var inPlace = _.isUndefined(options.inPlace)? true : options.inPlace;
     delete options.inPlace;
 
-    options.arrays = options.arrays || REPLACE;
-    options.booleans = options.booleans || REPLACE;
-    options.numbers = options.numbers || REPLACE;
-    options.strings = options.strings || REPLACE;
-    options.undefineds = options.undefineds || REPLACE;
-
-
+    var isDeep = _.isUndefined(options.isDeep)? true : options.isDeep;
+    delete options.isDeep;
 
     function customizeByOptions(x,y) {
+        if(!isDeep &&_.isPlainObject(y)){
+            return y;
+        }
+
         for(var type in options) {
             if (recoginize[type](y)) {
-                return getFuncByBehaviour(options[type])(x, y);
+                var customFunc = getFuncByBehaviour(options[type]);
+                if (_.isFunction(customFunc)){
+                    return customFunc(x, y);
+                }
+                break;
             }
         }
+
+        return undefined;
     }
 
     return function() {
         var newArguments = Array.prototype.slice.call(arguments);
 
         if (!inPlace){
-            newArguments[0] = _.clone(arguments[0], true);
+            newArguments[0] = _.clone(arguments[0], isDeep);
         }
 
         newArguments.push(customizeByOptions);
