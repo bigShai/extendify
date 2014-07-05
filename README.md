@@ -7,7 +7,6 @@ Extedify wraps [lodash](http://lodash.com)'s _.merge with pre-defined common beh
 
 By default, extedify will behave exactly like lodash's _.merge.
 
---------------
 
 ##Installation
 ```javascript
@@ -23,7 +22,6 @@ _.extend = extendify({
 })
 ```
 
---------------
 ##Options
 
 - `inPlace` - `true` (default) /`false`. Will the result override the 'source' object or return a new object.
@@ -33,7 +31,6 @@ _.extend = extendify({
 - `strings` - `"replace"`(default)/`"concat"`/`"or"`/`"and"`
 - `undefineds` - `"replace"`(default)/`"concat"`/`"or"`/`"and"`
 
---------------
 ##Examples
 
 Get an _.extend function that:
