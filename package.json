@@ -20,6 +20,7 @@
     "deep",
     "merge",
     "lodash",
+    "underscore",
     "nested"
   ],
   "repository": {
