@@ -1,7 +1,7 @@
 {
   "name": "extendify",
   "version" : "0.1.0",
-  "description": "Customize your _.extend ",
+  "description": "Deep extend with customizable behavior for Node.js",
   "main": "app.js",
   "dependencies": {
     "lodash": "^2.4.1"
@@ -20,6 +20,7 @@
     "deep",
     "merge",
     "lodash",
+    "underscore",
     "nested"
   ],
   "repository": {
