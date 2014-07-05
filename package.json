@@ -1,0 +1,29 @@
+{
+  "name": "extendify",
+  "version" : "0.1.0",
+  "description": "Customize your _.extend ",
+  "main": "app.js",
+  "dependencies": {
+    "lodash": "^2.4.1"
+  },
+  "devDependencies": {},
+  "author": {
+    "name": "bighshai",
+    "email": "reshef.shai@gmail.com"
+  },
+  "license": "MIT",
+  "contributors": [
+    "Shai Reshef <reshef.shai@gmail.com>"
+  ],
+  "keywords": [
+    "extend",
+    "deep",
+    "merge",
+    "lodash",
+    "nested"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bigShai/extendify.git"
+  }
+}
