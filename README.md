@@ -3,7 +3,7 @@
 #### Deep extend with customizable behavior for Node.js.
 
 
-Extedify wraps [lodash](http://lodash.com)'s _.merge(~ a deep _.extend) with pre-defined common behaviors. Just choose the function you need for each property type. (Arrays, Numbers etc..)
+Extedify is a lightweight wrapper over [lodash](http://lodash.com)'s _.merge(~ a deep _.extend) with pre-defined common behaviors. Just choose the function you need for each property type. (Arrays, Numbers etc..)
 
 By default, extedify will behave exactly like lodash's _.merge.
 
