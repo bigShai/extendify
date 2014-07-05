@@ -5,7 +5,7 @@
 
 Extedify wraps [lodash](http://lodash.com)'s _.merge with pre-defined common behaviors. Just choose the function you need for each property type. (Arrays, Numbers etc..)
 
-By defualt, extedify will behave exacly like lodash's _.merge.
+By default, extedify will behave exactly like lodash's _.merge.
 
 --------------
 ##Installation
@@ -36,8 +36,11 @@ _.extend = extendify({
 ##Examples
 
 Get an _.extend function that:
+
 1. **Is immutable to it's arguments.**
+
 2. **Replaces arrays.** (by defualt lodash's merge them: [1,2] + [3] -> [3,2])
+
 3. Supports **nested objects**, aka **deep extends.** (given..)
 
 ```javascript
