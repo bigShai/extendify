@@ -1,71 +1,101 @@
-# Extendify
+# extendify
 
-#### Deep extend with customizable behavior for Node.js.
+**Deep extend with customizable behavior for Node.js.**
+
+Extedify is a lightweight wrapper over [lodash](http://lodash.com)'s `_.merge` (like a *deep* `_.extend`) with customizable handling of arrays, booleans, numbers and strings.
+
+By default, *extedify* will behave exactly like lodash's `_.merge`.
 
 
-Extedify is a lightweight wrapper over [lodash](http://lodash.com)'s _.merge(~ a deep _.extend) with pre-defined common behaviors. Just choose the function you need for each property type. (Arrays, Numbers etc..)
+## Installation
 
-By default, extedify will behave exactly like lodash's _.merge.
-
-
-##Installation
 ```javascript
 npm install extendify
 ```
-##Usage
+
+## Usage
+
 ```javascript
-var _ = require('lodash'); //underscore's ok too..
 var extendify = require('extendify');
 
-_.extend = extendify({
-//options
-})
+myExtend = extendify({
+    // options
+});
 ```
 
-##Options
 
-- `inPlace` - `true` (default) /`false`. Will the result override the 'source' object or return a new object.
-- `inDeep` - `true` (default) /`false`. Use deep extend or shallow extend.
-- `arrays` - `"replace"`/`"concat"`/`"merge"`(default)/`"or"`/`"and"`
-- `booleans` - `"replace"`(default)/`"concat"`/`"or"`/`"and"`
-- `numbers` - `"replace"`(default)/`"concat"`/`"or"`/`"and"`
-- `strings` - `"replace"`(default)/`"concat"`/`"or"`/`"and"`
+## Options
 
-##Examples
+- `inPlace` – Override the 'source' with the result?
+    - `true` *default*
+    - `false`
+- `inDeep` – Use deep extend?
+    - `true` *default*
+    - `false`
+- `arrays` – How to handle arrays?
+    - `'replace'`
+    - `'concat'`
+    - `'merge'` *default*
+    - `'or'`
+    - `'and'`
+- `booleans` – How to handle booleans?
+    - `'replace'` *default*
+    - `'concat'`
+    - `'or'`
+    - `'and'`
+- `numbers` – How to handle numbers?
+    - `'replace'` *default*
+    - `'concat'`
+    - `'or'`
+    - `'and'`
+- `strings` – How to handle strings?
+    - `'replace'` *default*
+    - `'concat'`
+    - `'or'`
+    - `'and'`
 
-Get an _.extend function that:
 
-1. **Is immutable to it's arguments.**
+## Examples
 
-2. **Replaces arrays.** (by default lodash's merge them: [1,2] + [3] -> [3,2])
-
-3. Supports **nested objects**, aka **deep extends.**
+Let's get an _.extend function that
+- is **immutable to it's arguments**,
+- **replaces arrays**,
+- supports **nested objects** (also known as **deep extends**).
 
 ```javascript
-_.extend = extendify({
+myExtend = extendify({
     inPlace: false,
-    arrays : "replace"
+    arrays : 'replace'
 });
 
-obj1 = {
+object1 = {
     a:{
-        arr: [1,2]
+        list: [1, 2]
     },
     b: 4
 };
 
-obj2 = {
+object2 = {
     a:{
-        arr: [3]
+        list: [3]
     }
 };
+```
 
-res = _.extend(obj1,obj2);
-console.log(JSON.stringify(res)); //{"a":{"arr":[3]},"b":4}
-console.log(obj1 === res); //false
+`myExtend(object1, object2);` will give you the following. `obj1 === res` is `false`.
+
+```
+{
+    a: {
+        list: [3]
+    },
+    b: 4
+}
 ```
 
 More examples are available in the 'examples.js' file.
 
---------------
-Your feedback is welcome! email me at: _reshef.shai@gmail.com_
+
+## Contributions
+
+Your feedback is welcome, email me at [_reshef.shai@gmail.com_](mailto:reshef.shai@gmail.com).
