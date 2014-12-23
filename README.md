@@ -29,7 +29,7 @@ myExtend = extendify({
 - `inPlace` – Override the 'source' with the result?
     - `true` *default*
     - `false`
-- `inDeep` – Use deep extend?
+- `isDeep` – Use deep extend?
     - `true` *default*
     - `false`
 - `arrays` – How to handle arrays?
