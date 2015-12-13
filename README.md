@@ -1,6 +1,6 @@
-# extendify
+![Logo](/resources/img/logo.png)
 
-**Deep extend with customizable behavior for Node.js.**
+#### Deep extend with customizable behavior for Node.js.
 
 Extedify is a lightweight wrapper over [lodash](http://lodash.com)'s `_.merge` (like a *deep* `_.extend`) with customizable handling of arrays, booleans, numbers and strings.
 
@@ -9,6 +9,7 @@ By default, *extedify* will behave exactly like lodash's `_.merge`.
 
 ## Installation
 
+##Installation
 ```javascript
 npm install extendify
 ```
@@ -63,7 +64,7 @@ Let's get an _.extend function that
 - supports **nested objects** (also known as **deep extends**).
 
 ```javascript
-myExtend = extendify({
+_.extend = extendify({
     inPlace: false,
     arrays : 'replace'
 });
