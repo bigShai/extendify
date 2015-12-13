@@ -4,7 +4,7 @@
 
 "Extedify" is a lightweight wrapper over [lodash](http://lodash.com)'s `_.merge` (like a *deep* `_.extend`) with customizable handling of arrays, booleans, numbers and strings.
 
-(By default, *extedify* will behave exactly like lodash's `_.merge`.)
+(By default, *extedify* will behave exactly like lodash's `_.merge`)
 
 ## Installation
 
