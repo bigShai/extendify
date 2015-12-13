@@ -1,4 +1,4 @@
-# Extendify
+![Logo](/resources/img/logo.png)
 
 #### Deep extend with customizable behavior for Node.js.
 
@@ -8,11 +8,11 @@ Extedify is a lightweight wrapper over [lodash](http://lodash.com)'s _.merge(~ a
 By default, extedify will behave exactly like lodash's _.merge.
 
 
-##Installation
+## Installation
 ```javascript
 npm install extendify
 ```
-##Usage
+## Usage
 ```javascript
 var _ = require('lodash'); //underscore's ok too..
 var extendify = require('extendify');
@@ -22,16 +22,16 @@ _.extend = extendify({
 })
 ```
 
-##Options
+## Options
 
 - `inPlace` - `true` (default) /`false`. Will the result override the 'source' object or return a new object.
-- `inDeep` - `true` (default) /`false`. Use deep extend or shallow extend.
+- `isDeep` - `true` (default) /`false`. Use deep extend or shallow extend.
 - `arrays` - `"replace"`/`"concat"`/`"merge"`(default)/`"or"`/`"and"`
 - `booleans` - `"replace"`(default)/`"concat"`/`"or"`/`"and"`
 - `numbers` - `"replace"`(default)/`"concat"`/`"or"`/`"and"`
 - `strings` - `"replace"`(default)/`"concat"`/`"or"`/`"and"`
 
-##Examples
+## Examples
 
 Get an _.extend function that:
 
@@ -43,6 +43,7 @@ Get an _.extend function that:
 
 ```javascript
 _.extend = extendify({
+    isDeep: true, //also the default
     inPlace: false,
     arrays : "replace"
 });
