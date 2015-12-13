@@ -4,7 +4,7 @@
 
 "Extedify" is a lightweight wrapper over [lodash](http://lodash.com)'s `_.merge` (like a *deep* `_.extend`) with customizable handling of arrays, booleans, numbers and strings.
 
-(By default, *extedify* will behave exactly like lodash's `_.merge`)
+(By default, *extedify* will behave exactly like lodash's `_.merge`.)
 
 ## Installation
 
@@ -24,32 +24,32 @@ myExtend = extendify({
 ## Options
 
 - `inPlace` – Override the 'source' with the result?
-    - `true` (*default*)
-    - `false`
+    - true (*default*)
+    - false
 - `isDeep` – Use deep extend?
-    - `true` (*default*)
-    - `false`
+    - true (*default*)
+    - false
 - `arrays` – How to handle arrays?
-    - `'replace'` (*recommended*)
-    - `'concat'`
-    - `'merge'` (*default*)
-    - `'or'`
-    - `'and'`
+    - replace (*recommended*)
+    - concat
+    - merge (*default*)
+    - or
+    - and
 - `booleans` – How to handle booleans?
-    - `'replace'` (*default*)
-    - `'concat'`
-    - `'or'`
-    - `'and'`
+    - replace (*default*)
+    - concat
+    - or
+    - and
 - `numbers` – How to handle numbers?
-    - `'replace'` (*default*)
-    - `'concat'`
-    - `'or'`
-    - `'and'`
+    - replace (*default*)
+    - concat
+    - or
+    - and
 - `strings` – How to handle strings?
-    - `'replace'` *default*
-    - `'concat'`
-    - `'or'`
-    - `'and'`
+    - replace (*default*)
+    - concat
+    - or
+    - and
 
 ## Example
 Let's get an _.extend function that
