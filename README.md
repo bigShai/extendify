@@ -2,23 +2,19 @@
 
 #### Deep extend with customizable behavior for Node.js.
 
-Extedify is a lightweight wrapper over [lodash](http://lodash.com)'s `_.merge` (like a *deep* `_.extend`) with customizable handling of arrays, booleans, numbers and strings.
+"Extedify" is a lightweight wrapper over [lodash](http://lodash.com)'s `_.merge` (like a *deep* `_.extend`) with customizable handling of arrays, booleans, numbers and strings.
 
-By default, *extedify* will behave exactly like lodash's `_.merge`.
-
+(By default, *extedify* will behave exactly like lodash's `_.merge`.)
 
 ## Installation
 
-##Installation
 ```javascript
 npm install extendify
 ```
 
 ## Usage
-
 ```javascript
 var extendify = require('extendify');
-
 myExtend = extendify({
     // options
 });
@@ -28,24 +24,24 @@ myExtend = extendify({
 ## Options
 
 - `inPlace` – Override the 'source' with the result?
-    - `true` *default*
+    - `true` (*default*)
     - `false`
 - `isDeep` – Use deep extend?
-    - `true` *default*
+    - `true` (*default*)
     - `false`
 - `arrays` – How to handle arrays?
-    - `'replace'`
+    - `'replace'` (*recommended*)
     - `'concat'`
-    - `'merge'` *default*
+    - `'merge'` (*default*)
     - `'or'`
     - `'and'`
 - `booleans` – How to handle booleans?
-    - `'replace'` *default*
+    - `'replace'` (*default*)
     - `'concat'`
     - `'or'`
     - `'and'`
 - `numbers` – How to handle numbers?
-    - `'replace'` *default*
+    - `'replace'` (*default*)
     - `'concat'`
     - `'or'`
     - `'and'`
@@ -55,17 +51,16 @@ myExtend = extendify({
     - `'or'`
     - `'and'`
 
-
-## Examples
-
+## Example
 Let's get an _.extend function that
-- is **immutable to it's arguments**,
+- **returns a copy/clone**,
 - **replaces arrays**,
 - supports **nested objects** (also known as **deep extends**).
 
 ```javascript
 _.extend = extendify({
     inPlace: false,
+    isDeep: true,
     arrays : 'replace'
 });
 
@@ -81,17 +76,16 @@ object2 = {
         list: [3]
     }
 };
-```
 
-`myExtend(object1, object2);` will give you the following. `obj1 === res` is `false`.
-
-```
+var result = myExtend(object1, object2);
+/*
 {
     a: {
         list: [3]
     },
     b: 4
 }
+*/
 ```
 
 More examples are available in the 'examples.js' file.
