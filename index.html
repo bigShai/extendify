@@ -1,0 +1,183 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Extendify by bigShai</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Extendify</h1>
+        <p>Deep extend with customizable behavior.</p>
+
+        <p class="view"><a href="https://github.com/bigShai/extendify">View the Project on GitHub <small>bigShai/extendify</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/bigShai/extendify/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/bigShai/extendify/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/bigShai/extendify">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><img src="https://raw.githubusercontent.com/bigShai/extendify/master/resources/img/logo.png" alt="Logo"></p>
+
+<h4>
+<a id="deep-extend-with-customizable-behavior-for-nodejs" class="anchor" href="#deep-extend-with-customizable-behavior-for-nodejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deep extend with customizable behavior for Node.js.</h4>
+
+<p>"Extedify" is a lightweight wrapper over <a href="http://lodash.com">lodash</a>'s <code>_.merge</code> (like a <em>deep</em> <code>_.extend</code>) with customizable handling of arrays, booleans, numbers and strings.</p>
+
+<p>(By default, <em>extedify</em> will behave exactly like lodash's <code>_.merge</code>)</p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<div class="highlight highlight-source-js"><pre>npm install extendify</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> extendify <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>extendify<span class="pl-pds">'</span></span>);
+myExtend <span class="pl-k">=</span> <span class="pl-en">extendify</span>({
+    <span class="pl-c">// options</span>
+});</pre></div>
+
+<h2>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<ul>
+<li>
+<code>inPlace</code> – Override the 'source' with the result?
+
+<ul>
+<li>true (<em>default</em>)</li>
+<li>false</li>
+</ul>
+</li>
+<li>
+<code>isDeep</code> – Use deep extend?
+
+<ul>
+<li>true (<em>default</em>)</li>
+<li>false</li>
+</ul>
+</li>
+<li>
+<code>arrays</code> – How to handle arrays?
+
+<ul>
+<li>replace (<em>recommended</em>)</li>
+<li>concat</li>
+<li>merge (<em>default</em>)</li>
+<li>or</li>
+<li>and</li>
+</ul>
+</li>
+<li>
+<code>booleans</code> – How to handle booleans?
+
+<ul>
+<li>replace (<em>default</em>)</li>
+<li>concat</li>
+<li>or</li>
+<li>and</li>
+</ul>
+</li>
+<li>
+<code>numbers</code> – How to handle numbers?
+
+<ul>
+<li>replace (<em>default</em>)</li>
+<li>concat</li>
+<li>or</li>
+<li>and</li>
+</ul>
+</li>
+<li>
+<code>strings</code> – How to handle strings?
+
+<ul>
+<li>replace (<em>default</em>)</li>
+<li>concat</li>
+<li>or</li>
+<li>and</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example</h2>
+
+<p>Let's get an _.extend function that</p>
+
+<ul>
+<li>
+<strong>returns a copy/clone</strong>,</li>
+<li>
+<strong>replaces arrays</strong>,</li>
+<li>supports <strong>nested objects</strong> (also known as <strong>deep extends</strong>).</li>
+</ul>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">_</span>.<span class="pl-smi">extend</span> <span class="pl-k">=</span> <span class="pl-en">extendify</span>({
+    inPlace<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+    isDeep<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+    arrays <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>replace<span class="pl-pds">'</span></span>
+});
+
+object1 <span class="pl-k">=</span> {
+    a<span class="pl-k">:</span>{
+        list<span class="pl-k">:</span> [<span class="pl-c1">1</span>, <span class="pl-c1">2</span>]
+    },
+    b<span class="pl-k">:</span> <span class="pl-c1">4</span>
+};
+
+object2 <span class="pl-k">=</span> {
+    a<span class="pl-k">:</span>{
+        list<span class="pl-k">:</span> [<span class="pl-c1">3</span>]
+    }
+};
+
+<span class="pl-k">var</span> result <span class="pl-k">=</span> <span class="pl-en">myExtend</span>(object1, object2);
+<span class="pl-c">/*</span>
+<span class="pl-c">{</span>
+<span class="pl-c">    a: {</span>
+<span class="pl-c">        list: [3]</span>
+<span class="pl-c">    },</span>
+<span class="pl-c">    b: 4</span>
+<span class="pl-c">}</span>
+<span class="pl-c">*/</span></pre></div>
+
+<p>More examples are available in the 'examples.js' file.</p>
+
+<h2>
+<a id="contributions" class="anchor" href="#contributions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributions</h2>
+
+<p>Your feedback is welcome, email me at <a href="mailto:reshef.shai@gmail.com"><em>reshef.shai@gmail.com</em></a>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/bigShai">bigShai</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-71356455-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
