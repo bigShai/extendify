@@ -5,6 +5,7 @@ const CONCAT = 'concat';
 const MERGE = 'merge';
 const OR = 'or';
 const AND = 'and';
+const UNION = 'union'
 
 var recoginize = {
     arrays : _.isArray,
@@ -24,6 +25,15 @@ function getFuncByBehaviour(behaviour){
                 x = (_.isArray(x) || _.isString(x))? x : (_.isUndefined(x) ? [] : [x]);
                 y = (_.isArray(y) || _.isString(y))? y : (_.isUndefined(y) ? [] : [y]);
                 return x.concat(y);
+            };
+        case UNION:
+            return function(x,y) {
+                if (!_.isArray(x) && !_.isArray(y)) {
+                    return undefined;
+                }
+                x = (_.isArray(x) || _.isString(x))? x : (_.isUndefined(x) ? [] : [x]);
+                y = (_.isArray(y) || _.isString(y))? y : (_.isUndefined(y) ? [] : [y]);
+                return _.union(x, y);
             };
         case MERGE:
             return undefined;
