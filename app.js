@@ -21,8 +21,8 @@ function getFuncByBehaviour(behaviour){
             };
         case CONCAT:
             return function(x,y) {
-                x = (_.isArray(x) || _.isString(x))? x : [x];
-                y = (_.isArray(y) || _.isString(y))? y : [y];
+                x = (_.isArray(x) || _.isString(x))? x : (_.isUndefined(x) ? [] : [x]);
+                y = (_.isArray(y) || _.isString(y))? y : (_.isUndefined(y) ? [] : [y]);
                 return x.concat(y);
             };
         case MERGE:
