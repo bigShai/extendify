@@ -1,4 +1,13 @@
-var _ = require('lodash');
+const isArray       = require('lodash/isArray');
+const isBoolean     = require('lodash/isBoolean');
+const isNumber      = require('lodash/isNumber');
+const isString      = require('lodash/isString');
+const isUndefined   = require('lodash/isUndefined');
+const union         = require('lodash/union');
+const isPlainObject = require('lodash/isPlainObject');
+const isFunction    = require('lodash/isFunction');
+const clone         = require('lodash/clone');
+const mergeWith     = require('lodash/mergeWith');
 
 const REPLACE = 'replace';
 const CONCAT = 'concat';
@@ -7,11 +16,12 @@ const OR = 'or';
 const AND = 'and';
 const UNION = 'union'
 
+
 var recoginize = {
-    arrays : _.isArray,
-    booleans : _.isBoolean,
-    numbers : _.isNumber,
-    strings: _.isString
+    arrays : isArray,
+    booleans : isBoolean,
+    numbers : isNumber,
+    strings: isString
 };
 
 function getFuncByBehaviour(behaviour){
@@ -22,18 +32,18 @@ function getFuncByBehaviour(behaviour){
             };
         case CONCAT:
             return function(x,y) {
-                x = (_.isArray(x) || _.isString(x))? x : (_.isUndefined(x) ? [] : [x]);
-                y = (_.isArray(y) || _.isString(y))? y : (_.isUndefined(y) ? [] : [y]);
+                x = (isArray(x) || isString(x))? x : (isUndefined(x) ? [] : [x]);
+                y = (isArray(y) || isString(y))? y : (isUndefined(y) ? [] : [y]);
                 return x.concat(y);
             };
         case UNION:
             return function(x,y) {
-                if (!_.isArray(x) && !_.isArray(y)) {
+                if (!isArray(x) && !isArray(y)) {
                     return undefined;
                 }
-                x = (_.isArray(x) || _.isString(x))? x : (_.isUndefined(x) ? [] : [x]);
-                y = (_.isArray(y) || _.isString(y))? y : (_.isUndefined(y) ? [] : [y]);
-                return _.union(x, y);
+                x = (isArray(x) || isString(x))? x : (isUndefined(x) ? [] : [x]);
+                y = (isArray(y) || isString(y))? y : (isUndefined(y) ? [] : [y]);
+                return union(x, y);
             };
         case MERGE:
             return undefined;
@@ -51,21 +61,21 @@ function getFuncByBehaviour(behaviour){
 function customizeExtend(options) {
     options = options || {};
 
-    var inPlace = _.isUndefined(options.inPlace)? true : options.inPlace;
+    var inPlace = isUndefined(options.inPlace)? true : options.inPlace;
     delete options.inPlace;
 
-    var isDeep = _.isUndefined(options.isDeep)? true : options.isDeep;
+    var isDeep = isUndefined(options.isDeep)? true : options.isDeep;
     delete options.isDeep;
 
     function customizeByOptions(x,y) {
-        if(!isDeep &&_.isPlainObject(y)){
+        if(!isDeep &&isPlainObject(y)){
             return y;
         }
 
         for(var type in options) {
             if (recoginize[type](y)) {
                 var customFunc = getFuncByBehaviour(options[type]);
-                if (_.isFunction(customFunc)){
+                if (isFunction(customFunc)){
                     return customFunc(x, y);
                 }
                 break;
@@ -79,11 +89,11 @@ function customizeExtend(options) {
         var newArguments = Array.prototype.slice.call(arguments);
 
         if (!inPlace){
-            newArguments[0] = _.clone(arguments[0], isDeep);
+            newArguments[0] = clone(arguments[0], isDeep);
         }
 
         newArguments.push(customizeByOptions);
-        return _.merge.apply(this, newArguments);
+        return mergeWith.apply(this, newArguments);
     }
 }
 
