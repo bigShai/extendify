@@ -4,7 +4,7 @@
   "description": "Deep extend with customizable behavior for Node.js",
   "main": "app.js",
   "dependencies": {
-    "lodash": "^2.4.1"
+    "lodash": "^4.17.15"
   },
   "devDependencies": {},
   "author": {
